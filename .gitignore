@@ -1,0 +1,11 @@
+.settings
+.classpath
+.project
+lib/
+bin/
+.git
+.DS_Store
+.mvn
+mvnw*
+target/
+HELP.md
