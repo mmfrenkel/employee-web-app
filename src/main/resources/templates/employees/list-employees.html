@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Employee Directory</title>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+	
+	    <h3>Employee Directory</h3>
+	    <hr>
+	    
+	    <!-- Add a new Employee -->
+	    <a th:href="@{/employees/showEmployeeFormCreate}"
+	       class="btn btn-primary btn-sm mb-3">
+	       Add Employee
+	    </a>
+	    
+	    <!-- View Existing Employees -->
+	    <table class="table table-bordered table-striped">
+	        <thead class="thead-dark">
+	            <tr>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Email</th>
+	                <th>Action</th>
+	            </tr>
+	        </thead>
+	        
+	        <tbody>
+	            <tr th:each="employee: ${employees}">
+	            
+	                <td th:text="${employee.firstName}" />  
+	                <td th:text="${employee.lastName}" />   
+	                <td th:text="${employee.email}" />
+	                
+	                <!-- Functions -->
+                    <!-- Add update button/link -->
+	                <td>
+	                    <form action="#" th:action="@{/employees/showFormForUpdate}" method="POST">
+	                    
+	                        <input type="hidden" name="employeeId" th:value="${employee.id}" />                     
+	                        <button type="submit" class="btn btn-info btn-sm">Update</button>
+	
+	                    </form>
+	                    
+	                    <form action="#" th:action="@{/employees/delete}" method="GET">
+                        
+                            <input type="hidden" name="employeeId" th:value="${employee.id}" />                     
+                            <button type="submit" class="btn btn-info btn-sm btn-danger">Delete</button>
+    
+                        </form>
+	                </td>
+		                
+	            </tr>
+	        </tbody>        
+	    </table>
+	    
+    </div>
+    
+</body>
+</html>
+
